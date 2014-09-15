@@ -1,0 +1,30 @@
+/* line 3, C:\Users\dhatanaka\Desktop\projetos\apontamentoHoras\assets\less\site\index.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/dhatanaka\/Desktop\/projetos\/apontamentoHoras\/assets\/less\/site\/index\.less}line{font-family:\000033}}
+#time,
+#date {
+  color: #cccccc;
+}
+/* line 7, C:\Users\dhatanaka\Desktop\projetos\apontamentoHoras\assets\less\site\index.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/dhatanaka\/Desktop\/projetos\/apontamentoHoras\/assets\/less\/site\/index\.less}line{font-family:\000037}}
+#time span,
+#date span,
+#separator span {
+  font-weight: bold;
+  font-size: 30pt;
+}
+/* line 12, C:\Users\dhatanaka\Desktop\projetos\apontamentoHoras\assets\less\site\index.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/dhatanaka\/Desktop\/projetos\/apontamentoHoras\/assets\/less\/site\/index\.less}line{font-family:\0000312}}
+#points table tbody tr:nth-child(odd) td:last-child {
+  vertical-align: middle;
+}
+/* line 16, C:\Users\dhatanaka\Desktop\projetos\apontamentoHoras\assets\less\site\index.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/dhatanaka\/Desktop\/projetos\/apontamentoHoras\/assets\/less\/site\/index\.less}line{font-family:\0000316}}
+#points table tfoot tr > td {
+  border-top: 2px solid #ddd;
+  font-weight: bold;
+}
+/* line 21, C:\Users\dhatanaka\Desktop\projetos\apontamentoHoras\assets\less\site\index.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/dhatanaka\/Desktop\/projetos\/apontamentoHoras\/assets\/less\/site\/index\.less}line{font-family:\0000321}}
+#insertPoint {
+  margin-bottom: 50px;
+}

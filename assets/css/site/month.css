@@ -1,0 +1,12 @@
+/* line 1, C:\Users\dhatanaka\Desktop\projetos\apontamentoHoras\assets\less\site\month.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/dhatanaka\/Desktop\/projetos\/apontamentoHoras\/assets\/less\/site\/month\.less}line{font-family:\000031}}
+#points-month table tfoot tr > td {
+  border-top: 2px solid #ddd;
+  font-weight: bold;
+}
+/* line 6, C:\Users\dhatanaka\Desktop\projetos\apontamentoHoras\assets\less\site\month.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/dhatanaka\/Desktop\/projetos\/apontamentoHoras\/assets\/less\/site\/month\.less}line{font-family:\000036}}
+#insertPoint {
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
