@@ -59,21 +59,32 @@ class MY_Controller extends CI_Controller
     {
 //        print_r($pointsMonth);
 //        die();
-        $teste = new DateTime('00:00');
+//        echo "<br><br><br><br>";
+//        $teste = new DateTime('00:00');
+        $baseDateTime = new DateTime('00:00');
         $timeElapsedMonth = new DateTime('00:00');
         if (isset($pointsMonth) && !empty($pointsMonth)) {
             foreach ($pointsMonth as $pointMonth) {
-                $dateDiff = $timeElapsedMonth->diff($this->timeElapsed($pointMonth->dayPoints), true);
+                $dateDiff = $baseDateTime->diff($this->timeElapsed($pointMonth->dayPoints), true);
                 $timeElapsedMonth->add($dateDiff);
+                
+//                print_r($this->timeElapsed($pointMonth->dayPoints));
+//                echo "<br>";
+//                print_r($this->timeElapsed($pointMonth->dayPoints)->diff(new DateTime('00:00')));
+//                echo "<br>";
+//                print_r($baseDateTime->diff($this->timeElapsed($pointMonth->dayPoints), true));
+//                echo "<br>";
 //                print_r($timeElapsedMonth);
+//                echo '<br><br>';
 //                die();
             }
-            $timeElapsedMonth = ($timeElapsedMonth->getTimestamp() - $teste->getTimestamp())/3600;
+            $timeElapsedMonth = $baseDateTime->diff($timeElapsedMonth, true);
         }
-        print_r(intval($timeElapsedMonth));
-        echo "<br><br>";
-        print_r($timeElapsedMonth->h);
-        die();
+        
+//        print_r($timeElapsedMonth->d * 24 + $timeElapsedMonth->h);
+//        echo "<br><br>";
+//        print_r($timeElapsedMonth);
+//        die();
         return $timeElapsedMonth;
     }
     
@@ -170,10 +181,10 @@ class MY_Controller extends CI_Controller
             
             foreach ($monthPoints as &$dayPoint) {
                 $dayPoint->dayOfMonth = new DateTime($dayPoint->dayOfMonth);
-                $auxDayPoints = json_decode($dayPoint->dayPoints);
+                $auxDayPoints = explode(",", $dayPoint->dayPoints);
                 
                 foreach ($auxDayPoints as &$auxDayPoint) {
-                    $auxDayPoint = new DateTime($auxDayPoint->dateTime);
+                    $auxDayPoint = new DateTime($auxDayPoint);
                 }
 //                print_r($auxDayPoints);
 //                echo "<br><br>";
@@ -238,6 +249,17 @@ class MY_Controller extends CI_Controller
         }
         
         return $pointsMonthFormated;
+    }
+    
+    protected function countNumMaxPointsMonth($pointsMonth)
+    {
+        $numMax = 0;
+        if (isset($pointsMonth) && !empty($pointsMonth)) {
+            foreach ($pointsMonth as $pointMonth) {
+                $numMax = count($pointMonth->dayPoints)>$numMax?count($pointMonth->dayPoints):$numMax;
+            }
+        }
+        return $numMax;
     }
     
 }

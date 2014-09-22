@@ -82,6 +82,31 @@ class Point extends MY_Controller
             $this->load->view('site/index-pointTable', $this->getData());
         }
     }
+    
+    public function loadMonthPointTable()
+    {
+        if ($this->input->is_ajax_request()) {
+            $curDateTime = new DateTime();
+        
+            $pointsMonth = $this->createMonthPoints($this->point->listAllbyMonth($curDateTime->format('Y-m-d')));
+            $dateBegin = new DateTime('first day of '.$curDateTime->format('Y').'-'.$curDateTime->format('m'));
+            $dateEnd = new DateTime('last day of '.$curDateTime->format('Y').'-'.$curDateTime->format('m'));
+
+            $numMaxPointsMonth = $this->countNumMaxPointsMonth($pointsMonth);
+
+            $totalHoursMonth = $this->timeElapsedMonth($pointsMonth);
+            $pointsMonthFormated = $this->formatPointsMonth($pointsMonth, $dateBegin, $dateEnd);
+            
+            $this->addData(
+                array(
+                    'pointsMonthFormated' => $pointsMonthFormated,
+                    'numMaxPointsMonth' => $numMaxPointsMonth,
+                    'totalHoursMonth' => ($totalHoursMonth->d*24+$totalHoursMonth->h.':'.$totalHoursMonth->i)
+                )
+            );
+            $this->load->view('site/month-pointTable', $this->getData());
+        }
+    }
 
     public function isDate($str)
     {

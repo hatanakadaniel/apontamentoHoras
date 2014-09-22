@@ -48,7 +48,7 @@ class Point_model extends CI_Model
     {
         $sql = 'select
                     date_format(dateTime, "%Y/%m/%d") as dayOfMonth,
-                    concat("[", group_concat("{","\"dateTime\":\"",dateTime,"\"}"), "]") as dayPoints
+                    group_concat(dateTime order by dateTime) as dayPoints
                         from
                             point
                                 where

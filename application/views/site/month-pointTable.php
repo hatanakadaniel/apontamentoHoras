@@ -32,7 +32,7 @@
             <td></td>
             <?php endfor; ?>
             <td>Total</td>
-            <td>300 Horas</td>
+            <td><?php echo $totalHoursMonth; ?></td>
         </tr>
     </tfoot>
 </table>

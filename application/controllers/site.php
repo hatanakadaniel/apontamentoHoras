@@ -67,24 +67,15 @@ class site extends MY_Controller
             array(
                 'pointsMonthFormated' => $pointsMonthFormated,
                 'numMaxPointsMonth' => $numMaxPointsMonth,
-                '$totalHoursMonth' => $totalHoursMonth
+                'totalHoursMonth' => ($totalHoursMonth->d*24+$totalHoursMonth->h.':'.$totalHoursMonth->i)
             )
         );
+        $this->addJS(array('site/month.js'));
         $this->addCSS(array('site/month.css'));
         $this->menu->setItemActive('Mês');
         $this->loadView('site/month');
     }
     
-    private function countNumMaxPointsMonth($pointsMonth)
-    {
-        $numMax = 0;
-        if (isset($pointsMonth) && !empty($pointsMonth)) {
-            foreach ($pointsMonth as $pointMonth) {
-                $numMax = count($pointMonth->dayPoints)>$numMax?count($pointMonth->dayPoints):$numMax;
-            }
-        }
-        return $numMax;
-    }
     
 //    private function countHoursMonth($pointsMonth)
 //    {

@@ -1,4 +1,8 @@
 <div class="container">
+    <div class="row">
+        <div id="feedback" class="alert">
+        </div>
+    </div>
     <div class="row" id="insertPoint">
         <div class="col-sm-12">
             <form class="form-inline" method="post" id="form-month-dateTime">
