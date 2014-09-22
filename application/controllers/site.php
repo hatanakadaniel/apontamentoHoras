@@ -32,7 +32,6 @@ class site extends MY_Controller
         );
         
         $this->addData(array('curDateTime' => $curDateTime->format('Y/m/d H:i:s')));
-        $this->addData(array('mensagem' => $this->lang->line('error_teste')));
         $this->addJS(array('site/index.js'));
         $this->addCSS(array('site/index.css'));
         $this->loadView('site/index');
