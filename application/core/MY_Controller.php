@@ -240,6 +240,17 @@ class MY_Controller extends CI_Controller
                             array_push($pointsDay->dayPoints, $dayPoint->format('H:i'));
                         }
                         $pointsDay->totalHour = $this->timeElapsed($pointMonth->dayPoints)->format('H:i');
+//                        if ($pointMonth->timeBalance) {
+//                            
+//                        }
+                        $pointsDay->timeBalance = array(
+                            "inverted" =>$pointMonth->timeBalance->invert,
+                            "interval" => str_pad(
+                                $pointMonth->timeBalance->d*24+$pointMonth->timeBalance->h, 2, '0', STR_PAD_LEFT
+                            ).':'.str_pad(
+                                $pointMonth->timeBalance->i, 2, '0', STR_PAD_LEFT
+                            )
+                        );
                     }
                 }
             }
@@ -260,6 +271,37 @@ class MY_Controller extends CI_Controller
             }
         }
         return $numMax;
+    }
+    
+    protected function timeBalance($pointsMonth)
+    {
+//        print_r($pointsMonth);
+//        die();
+        if (isset($pointsMonth) && !empty($pointsMonth)) {
+            $timeDay = new DateTime('08:00');
+            $dateTimeBase = new DateTime('00:00');
+            $auxDateTimeBase = new DateTime('00:00');
+//            $diffTimeDay = new DateInterval('P0Y');
+            foreach ($pointsMonth as &$pointMonth) {
+//                print_r($this->timeElapsed($pointMonth->dayPoints));
+//                echo "<br><br>";
+//                die();
+                $diffTimeDay = $timeDay->diff($this->timeElapsed($pointMonth->dayPoints));
+                $auxDateTimeBase->add($diffTimeDay);
+//                $diffTimeDay = $dateTimeBase->diff($auxDateTimeBase);
+//                print_r($diffTimeDay);
+//                echo "<br><br>";
+                $pointMonth->timeBalance = $dateTimeBase->diff($auxDateTimeBase);
+                $timeBalance = $dateTimeBase->diff($auxDateTimeBase);
+//                print_r($diffTimeDay->invert);
+//                die();
+            }
+        }
+//        $teste = clone $pointMonth->timeBalance;
+//        print_r($pointMonth->timeBalance);
+//        die();
+        return $timeBalance;
+        
     }
     
 }

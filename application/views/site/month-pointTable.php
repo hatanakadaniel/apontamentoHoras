@@ -12,6 +12,7 @@
             </th>
             <?php endfor; ?>
             <th>Total</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +24,12 @@
                 <td><?php echo isset($pointDay->dayPoints)&&!empty($pointDay->dayPoints)&&key_exists($i, $pointDay->dayPoints)?$pointDay->dayPoints[$i]:'-' ?></td>
             <?php endfor; ?>
             <td><?php echo $pointDay->totalHour; ?></td>
+            <td>
+                <span class="<?php echo isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)&&$pointDay->timeBalance['inverted']?'bg-danger':(isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)&&!$pointDay->timeBalance['inverted']?'bg-sucess':'') ?>">
+                    <?php echo isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)&&$pointDay->timeBalance['inverted']?'-':(isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)&&!$pointDay->timeBalance['inverted']?'+':'');?>
+                    <?php echo isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)?$pointDay->timeBalance['interval']:'-'; ?>
+                </span>
+            </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -33,6 +40,12 @@
             <?php endfor; ?>
             <td>Total</td>
             <td><?php echo $totalHoursMonth; ?></td>
+            <td>
+                <span class="<?php echo isset($timeBalance)&&!empty($timeBalance)&&$timeBalance['inverted']?'bg-danger':(isset($timeBalance)&&!empty($timeBalance)&&!$timeBalance['inverted']?'bg-sucess':'') ?>">
+                    <?php echo isset($timeBalance)&&!empty($timeBalance)&&$timeBalance['inverted']?'-':(isset($timeBalance)&&!empty($timeBalance)&&!$timeBalance['inverted']?'+':'');?>
+                    <?php echo isset($timeBalance)&&!empty($timeBalance)?$timeBalance['interval']:'-'; ?>
+                </span>
+            </td>
         </tr>
     </tfoot>
 </table>
