@@ -39,7 +39,7 @@
             <td></td>
             <?php endfor; ?>
             <td>Total</td>
-            <td><?php echo $totalHoursMonth; ?></td>
+            <td><?php echo isset($totalHoursMonth)?$totalHoursMonth:'-'; ?></td>
             <td>
                 <span class="<?php echo isset($timeBalance)&&!empty($timeBalance)&&$timeBalance['inverted']?'bg-danger':(isset($timeBalance)&&!empty($timeBalance)&&!$timeBalance['inverted']?'bg-sucess':'') ?>">
                     <?php echo isset($timeBalance)&&!empty($timeBalance)&&$timeBalance['inverted']?'-':(isset($timeBalance)&&!empty($timeBalance)&&!$timeBalance['inverted']?'+':'');?>

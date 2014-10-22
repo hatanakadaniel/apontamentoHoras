@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `apontamentohoras` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `apontamentohoras`;
+CREATE DATABASE  IF NOT EXISTS `apontamentoHoras` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `apontamentoHoras`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: apontamentohoras

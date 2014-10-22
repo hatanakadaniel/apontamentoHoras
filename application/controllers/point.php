@@ -95,13 +95,24 @@ class Point extends MY_Controller
             $numMaxPointsMonth = $this->countNumMaxPointsMonth($pointsMonth);
 
             $totalHoursMonth = $this->timeElapsedMonth($pointsMonth);
+            
+            $timeBalance = $this->timeBalance($pointsMonth);
+            
             $pointsMonthFormated = $this->formatPointsMonth($pointsMonth, $dateBegin, $dateEnd);
             
             $this->addData(
                 array(
                     'pointsMonthFormated' => $pointsMonthFormated,
                     'numMaxPointsMonth' => $numMaxPointsMonth,
-                    'totalHoursMonth' => ($totalHoursMonth->d*24+$totalHoursMonth->h.':'.$totalHoursMonth->i)
+                    'totalHoursMonth' => ($totalHoursMonth->d*24+$totalHoursMonth->h.':'.$totalHoursMonth->i),
+                    'timeBalance' => array(
+                        'inverted' => $timeBalance->invert,
+                        'interval' => str_pad(
+                            $timeBalance->d*24+$timeBalance->h, 2, '0', STR_PAD_LEFT
+                        ).':'.str_pad(
+                            $timeBalance->i, 2, '0', STR_PAD_LEFT
+                        )
+                    )
                 )
             );
             $this->load->view('site/month-pointTable', $this->getData());

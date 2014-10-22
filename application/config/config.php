@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '//localhost/apontamentoHoras/';
+$config['base_url']	= 'http://localhost/apontamentoHoras/';
 
 /*
 |--------------------------------------------------------------------------

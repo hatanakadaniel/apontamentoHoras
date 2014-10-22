@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row" id="insertPoint">
-        <div class="col-sm-offset-0">
+        <div class="col-sm-12">
             <form class="form-inline" id="form-dateTime" method="post">
                 <input type="hidden" name="date">
                 <div class="form-group">
@@ -32,8 +32,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="table-responsive" id="points">
-            <?php $this->load->view('site/index-pointTable'); ?>
+        <div class="col-sm-12">
+            <div class="table-responsive" id="points">
+                <?php $this->load->view('site/index-pointTable'); ?>
+            </div>
         </div>
     </div>
 </div>

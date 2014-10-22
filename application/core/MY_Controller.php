@@ -277,6 +277,7 @@ class MY_Controller extends CI_Controller
     {
 //        print_r($pointsMonth);
 //        die();
+        $timeBalance = '';
         if (isset($pointsMonth) && !empty($pointsMonth)) {
             $timeDay = new DateTime('08:00');
             $dateTimeBase = new DateTime('00:00');

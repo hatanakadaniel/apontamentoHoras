@@ -11,7 +11,7 @@
  *
  * @author dhatanaka
  */
-class ItemMenu_model extends CI_Model
+class Itemmenu_model extends CI_Model
 {
     
     private $link;
@@ -30,7 +30,7 @@ class ItemMenu_model extends CI_Model
     
     function newInstance($name='', $link='', $active=false, $title='')
     {
-        return new ItemMenu_model($name, $link, $active, $title);
+        return new Itemmenu_model($name, $link, $active, $title);
     }
 
 

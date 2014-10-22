@@ -48,10 +48,14 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'apontamentoHoras';
-$db['default']['password'] = 'wMxq8ZPDjm7Es4ed';
-$db['default']['database'] = 'apontamentoHoras';
+//$db['default']['hostname'] = 'localhost';
+//$db['default']['username'] = 'apontamentoHoras';
+//$db['default']['password'] = '9UaWpStY2V5X4rqH';
+//$db['default']['database'] = 'apontamentoHoras';
+$db['default']['hostname'] = 'teaminnovare.com.br';
+$db['default']['username'] = 'fcabe905_hata';
+$db['default']['password'] = '61TeOWyf.)Z*';
+$db['default']['database'] = 'fcabe905_hatanaka';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

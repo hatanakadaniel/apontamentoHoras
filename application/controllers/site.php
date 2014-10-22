@@ -11,6 +11,7 @@ class site extends MY_Controller
     {
         parent::__construct();
         $this->load->model('point_model', 'point');
+        $this->load->language('month', 'pt-br');
     }
 
     public function index()
@@ -37,11 +38,26 @@ class site extends MY_Controller
         $this->loadView('site/index');
     }
     
-    public function month()
+    public function month($month='')
     {
-        $curDateTime = new DateTime();
+//        print_r($month);
+//        die();
+        $curDateTime = new DateTime($month);
+
+        $forMonth = clone $curDateTime;
+        $forMonth->add(new DateInterval('P1M'));
+        $backMonth = clone $curDateTime;
+        $backMonth->sub(new DateInterval('P1M'));
+
+//        print_r($forMonth->format('M'));
+//        echo "<br><br>";
+//        print_r($backMonth);
+//        die();
         
         $pointsMonth = $this->createMonthPoints($this->point->listAllbyMonth($curDateTime->format('Y-m-d')));
+//        print_r($pointsMonth);
+//        die();
+        
         $dateBegin = new DateTime('first day of '.$curDateTime->format('Y').'-'.$curDateTime->format('m'));
         $dateEnd = new DateTime('last day of '.$curDateTime->format('Y').'-'.$curDateTime->format('m'));
         
@@ -51,27 +67,41 @@ class site extends MY_Controller
         
         $timeBalance = $this->timeBalance($pointsMonth);
         
-//        $timeBalance->h += 4;
-        
-//        print_r($timeBalance);
-//        die();
-        
         $pointsMonthFormated = $this->formatPointsMonth($pointsMonth, $dateBegin, $dateEnd);
         
+//        print_r($pointsMonthFormated);
+//        die();
+        
+        
+        if (isset($timeBalance) && !empty($timeBalance)) {
+            $this->addData(
+                array(
+                    'timeBalance' => array(
+                        'inverted' => $timeBalance->invert,
+                        'interval' => str_pad(
+                            $timeBalance->d*24+$timeBalance->h, 2, '0', STR_PAD_LEFT
+                        ).':'.str_pad(
+                            $timeBalance->i, 2, '0', STR_PAD_LEFT
+                        )
+                    )
+                )
+            );
+        }
+        if (strcmp(strtoupper(get_class($totalHoursMonth)), strtoupper('DateInterval')) == 0) {
+            $this->addData(
+                array(
+                    'totalHoursMonth' => ($totalHoursMonth->d*24+$totalHoursMonth->h.':'.$totalHoursMonth->i)
+                )
+            );
+        }
         
         $this->addData(
             array(
                 'pointsMonthFormated' => $pointsMonthFormated,
                 'numMaxPointsMonth' => $numMaxPointsMonth,
-                'totalHoursMonth' => ($totalHoursMonth->d*24+$totalHoursMonth->h.':'.$totalHoursMonth->i),
-                'timeBalance' => array(
-                    'inverted' => $timeBalance->invert,
-                    'interval' => str_pad(
-                        $timeBalance->d*24+$timeBalance->h, 2, '0', STR_PAD_LEFT
-                    ).':'.str_pad(
-                        $timeBalance->i, 2, '0', STR_PAD_LEFT
-                    )
-                )
+                'backMonth' => strtolower($backMonth->format('M')),
+                'forMonth' => strtolower($forMonth->format('M')),
+                'month' => $this->lang->line(strtolower($curDateTime->format('M')))
             )
         );
         $this->addJS(array('site/month.js'));

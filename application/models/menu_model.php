@@ -20,7 +20,7 @@ class Menu_model extends CI_Model
     {
         parent::__construct();
         $CI =& get_instance();
-        $CI->load->model('itemMenu_model', 'itemMenu');
+        $CI->load->model('itemmenu_model', 'itemMenu');
         array_push($this->itensMenu, $CI->itemMenu->newInstance('Home', base_url(), true));
         array_push($this->itensMenu, $CI->itemMenu->newInstance('Mês', base_url('site/month'), false));
     }
