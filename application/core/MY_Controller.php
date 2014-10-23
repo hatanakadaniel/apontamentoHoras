@@ -217,7 +217,11 @@ class MY_Controller extends CI_Controller
     
     protected function formatPointsMonth($pointsMonth, $dateBegin, $dateEnd)
     {
+//        print_r($dateEnd);
+//        die();
         $pointsMonthFormated = array();
+//        print_r($pointsMonth);
+//        die();
         for ($date = clone $dateBegin; $date <= $dateEnd; $date->add(new DateInterval('P1D'))) {
             $pointsDay = new stdClass();
             $pointsDay->dayOfMonth = $date->format('d/m/Y');
@@ -228,7 +232,14 @@ class MY_Controller extends CI_Controller
 //                    var_dump($pointMonth->dayOfMonth);
 //                    die();
 //                    echo "<br><br>";
-                    if ($date == $pointMonth->dayOfMonth) {
+//                    print_r($date);
+//                    echo " ";
+//                    var_dump($date == $pointMonth->dayOfMonth);
+//                    echo "<br><br>";
+//                    if ($date == $pointMonth->dayOfMonth) {
+                    if (strcmp($date->format('d/m/Y'), $pointMonth->dayOfMonth->format('d/m/Y')) == 0) {
+//                        print_r($date);
+//                        echo "<br><br>";
                         $pointsDay->dayPoints = array();
 //                        $totalHour = new DateTime('00:00');
                         foreach ($pointMonth->dayPoints as $dayPoint) {
@@ -258,7 +269,7 @@ class MY_Controller extends CI_Controller
 //            print_r($date);
 //            echo "<br>";
         }
-        
+//        die();
         return $pointsMonthFormated;
     }
     
@@ -279,11 +290,17 @@ class MY_Controller extends CI_Controller
 //        die();
         $timeBalance = '';
         if (isset($pointsMonth) && !empty($pointsMonth)) {
-            $timeDay = new DateTime('08:00');
             $dateTimeBase = new DateTime('00:00');
             $auxDateTimeBase = new DateTime('00:00');
 //            $diffTimeDay = new DateInterval('P0Y');
             foreach ($pointsMonth as &$pointMonth) {
+//                print_r($pointMonth);
+//                die();
+                if ($pointMonth->dayOfMonth->format('w') == 0 || $pointMonth->dayOfMonth->format('w') == 6) {
+                    $timeDay = new DateTime('00:00');
+                } else {
+                    $timeDay = new DateTime('08:00');
+                }
 //                print_r($this->timeElapsed($pointMonth->dayPoints));
 //                echo "<br><br>";
 //                die();

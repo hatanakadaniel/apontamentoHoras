@@ -25,7 +25,7 @@
             <?php endfor; ?>
             <td><?php echo $pointDay->totalHour; ?></td>
             <td>
-                <span class="<?php echo isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)&&$pointDay->timeBalance['inverted']?'bg-danger':(isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)&&!$pointDay->timeBalance['inverted']?'bg-sucess':'') ?>">
+                <span class="<?php echo isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)&&$pointDay->timeBalance['inverted']?'bg-danger':(isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)&&!$pointDay->timeBalance['inverted']?'bg-success':'') ?>">
                     <?php echo isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)&&$pointDay->timeBalance['inverted']?'-':(isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)&&!$pointDay->timeBalance['inverted']?'+':'');?>
                     <?php echo isset($pointDay->timeBalance)&&!empty($pointDay->timeBalance)?$pointDay->timeBalance['interval']:'-'; ?>
                 </span>
