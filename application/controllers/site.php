@@ -40,24 +40,16 @@ class site extends MY_Controller
     
     public function month($month='')
     {
-//        print_r($month);
-//        die();
+
         $curDateTime = new DateTime($month);
 
         $forMonth = clone $curDateTime;
         $forMonth->add(new DateInterval('P1M'));
         $backMonth = clone $curDateTime;
         $backMonth->sub(new DateInterval('P1M'));
-
-//        print_r($forMonth->format('M'));
-//        echo "<br><br>";
-//        print_r($backMonth);
-//        die();
         
         $pointsMonth = $this->createMonthPoints($this->point->listAllbyMonth($curDateTime->format('Y-m-d')));
-//        print_r($pointsMonth);
-//        die();
-        
+
         $dateBegin = new DateTime('first day of '.$curDateTime->format('Y').'-'.$curDateTime->format('m'));
         $dateEnd = new DateTime('last day of '.$curDateTime->format('Y').'-'.$curDateTime->format('m'));
         
@@ -68,10 +60,6 @@ class site extends MY_Controller
         $timeBalance = $this->timeBalance($pointsMonth);
         
         $pointsMonthFormated = $this->formatPointsMonth($pointsMonth, $dateBegin, $dateEnd);
-        
-//        print_r($pointsMonthFormated);
-//        die();
-        
         
         if (isset($timeBalance) && !empty($timeBalance)) {
             $this->addData(

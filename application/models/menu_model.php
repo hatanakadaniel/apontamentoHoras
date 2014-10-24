@@ -23,6 +23,7 @@ class Menu_model extends CI_Model
         $CI->load->model('itemmenu_model', 'itemMenu');
         array_push($this->itensMenu, $CI->itemMenu->newInstance('Home', base_url(), true));
         array_push($this->itensMenu, $CI->itemMenu->newInstance('Mês', base_url('site/month'), false));
+        array_push($this->itensMenu, $CI->itemMenu->newInstance('xlsx Reader', base_url('reader/'), false));
     }
     
     public function getItensMenu()

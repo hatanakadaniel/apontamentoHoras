@@ -18,9 +18,9 @@ body {
     z-index: -1;
 }*/
 .logo {
-  background: url('../images/logos/facebook-logo.png') no-repeat;
-  background-size: 50px 50px;
-  width: 50px;
+  background: url('../images/logos/logo.png') no-repeat;
+  background-size: 90px 50px;
+  width: 90px;
   height: 50px;
   display: block;
 }

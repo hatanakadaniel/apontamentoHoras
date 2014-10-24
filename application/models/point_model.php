@@ -58,6 +58,14 @@ class Point_model extends CI_Model
         $stmt = $this->db->query($sql, array($dateMonth));
         return $stmt->result();
     }
+
+    public function listOne($date)
+    {
+        $sql = 'select * from point where dateTime = ?;';
+        $stmt = $this->db->query($sql, array($date));
+        return $stmt->result();
+    }
+    
     
     public function listAllbyYear()
     {
